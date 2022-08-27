@@ -5,6 +5,5 @@
     pkgs.ffmpeg
     pkgs.nodePackages.yarn
     pkgs.replitPackages.jest
-    pkgs.git
 	];
 }
