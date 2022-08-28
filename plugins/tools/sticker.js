@@ -11,13 +11,13 @@ exports.run = {
             if (/video/.test(type)) {
                if (q.seconds > 10) return client.reply(m.chat, Func.texted('bold', `🚩 Maximum video duration is 10 seconds.`), m)
                return await client.sendSticker(m.chat, img, m, {
-                  packname: 'Sticker',
-                  author: 'Wildan Izzudin'
+                  packname: '',
+                  author: 'https://api.neoxr.my.id'
                })
             } else if (/image/.test(type)) {
                return await client.sendSticker(m.chat, img, m, {
-                  packname: 'Sticker',
-                  author: 'Wildan Izzudin'
+                  packname: '',
+                  author: 'https://api.neoxr.my.id'
                })
             }
          } else {
@@ -27,16 +27,16 @@ exports.run = {
                let img = await q.download()
                if (!img) return client.reply(m.chat, global.status.wrong, m)
                return await client.sendSticker(m.chat, img, m, {
-                  packname: 'Sticker',
-                  author: 'Wildan Izzudin'
+                  packname: '',
+                  author: 'https://api.neoxr.my.id'
                })
             } else if (/video/.test(mime)) {
                if ((q.msg || q).seconds > 10) return client.reply(m.chat, Func.texted('bold', `🚩 Maximum video duration is 10 seconds.`), m)
                let img = await q.download()
                if (!img) return client.reply(m.chat, global.status.wrong, m)
                return await client.sendSticker(m.chat, img, m, {
-                  packname: 'Sticker',
-                  author: 'Wildan Izzudin'
+                  packname: '',
+                  author: 'https://api.neoxr.my.id'
                })
             } else client.reply(m.chat, Func.texted('bold', `Stress ??`), m)
          }
