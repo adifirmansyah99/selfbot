@@ -18,8 +18,7 @@ global.store = makeInMemoryStore({
       stream: 'store'
    })
 })
-const keepAlive = require('./server')
-
+require('./server')
 const removeAuth = () => {
    try {
       fs.unlinkSync('./' + session)
@@ -172,5 +171,4 @@ const connect = async () => {
    return client
 }
 
-keepAlive()
 connect().catch(() => connect())
