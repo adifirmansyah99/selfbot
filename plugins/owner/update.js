@@ -1,19 +1,23 @@
 const { execSync } = require('child_process')
-const { Scandir } = require('system/extra')
-const path = require('path')
 exports.run = {
    usage: ['update'],
    async: async (m, {
       client
    }) => {
       try {
-         let stdout = execSync('git pull')
-         const output = stdout.toString()
+         var stdout = execSync('git pull')
+         var output = stdout.toString()
          if (output.match(new RegExp('Already up to date', 'g'))) return client.reply(m.chat, Func.texted('bold', `🚩 ${output.trim()}`), m)
-         client.reply(m.chat, `🚩 ${output.trim()}`, m).then(async () => {
-            Scandir('plugins').then(files => {
-               global.client.plugins = Object.fromEntries(files.filter(v => v.endsWith('.js')).map(file => [path.basename(file).replace('.js', ''), require(file)]))
-            }).catch(e => console.error(e))
+         if (output.match(/stash/g)) {
+            var stdout = execSync('git stash && git pull')
+            var output = stdout.toString()
+            client.reply(m.chat, `🚩 ${output.trim()}`, m).then(async () => {
+               await props.save()
+               process.send('reset')
+            })
+         } else return client.reply(m.chat, `🚩 ${output.trim()}`, m).then(async () => {
+            await props.save()
+            process.send('reset')
          })
       } catch (e) {
          return client.reply(m.chat, Func.jsonFormat(e), m)
