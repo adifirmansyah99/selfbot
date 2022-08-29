@@ -69,7 +69,7 @@ const connect = async () => {
       msgRetryCounterMap,
       browser: ['@neoxr / neoxr-bot', 'Chrome', '1.0.0'],
       auth: state,
-      ...fetchLatestBaileysVersion(),
+      version: [2, 2232, 7],
       getMessage: async (key) => {
          return await store.loadMessage(client.decodeJid(key.remoteJid), key.id)
       }
